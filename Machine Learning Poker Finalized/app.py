@@ -1,24 +1,15 @@
 import streamlit as st
 import joblib
 import pandas as pd
-import requests
 import os
 
 # -----------------------------
 # Model download
 # -----------------------------
 
-MODEL_URL = "https://drive.google.com/uc?export=download&id=1g3ORxJHqkwO0R5ySXSONdmN83EyqDncu"
-MODEL_PATH = "poker_complete_model.pkl"
-
 @st.cache_resource
 def load_model():
-
-    if not os.path.exists(MODEL_PATH):
-        with open(MODEL_PATH, "wb") as f:
-            f.write(requests.get(MODEL_URL).content)
-
-    return joblib.load(MODEL_PATH)
+    return joblib.load("poker_complete_model.pkl")
 
 model = load_model()
 
